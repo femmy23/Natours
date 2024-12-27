@@ -23,7 +23,7 @@ exports.uploadTourImages = upload.fields([
 ]);
 
 exports.resizeTourImages = catchAsync(async (req, res, next) => {
-  console.log(req.files);
+  // console.log(req.files);
 
   if (!req.files.imageCover || !req.files.images) return next();
 
@@ -156,7 +156,6 @@ exports.getTourWithin = catchAsync(async (req, res, next) => {
       ),
     );
   }
-  console.log(distance, lat, lng, unit);
 
   const tours = await Tour.find({
     startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
@@ -204,8 +203,6 @@ exports.getDistances = catchAsync(async (req, res, next) => {
       },
     },
   ]);
-
-  console.log(distances);
 
   res.status(200).json({
     status: 'success',

@@ -132,7 +132,6 @@ tourSchema.virtual('reviews', {
 
 //Document Middleware between .save() and .create() only
 tourSchema.pre('save', function (next) {
-  console.log(this);
   this.slug = slugify(this.name, { lower: true });
   next();
 });
@@ -170,7 +169,6 @@ tourSchema.pre(/^find/, function (next) {
 });
 
 tourSchema.post(/^find/, function (docs, next) {
-  console.log(docs);
   console.log(`Query took ${Date.now() - this.start} millisecond`);
   next();
 });
